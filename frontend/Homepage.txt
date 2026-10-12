@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- CIS276 Exercise 1 - Homepage for [Business Name] -->
+<!-- Author: [Your Name] -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Title shown in browser tab -->
+    <title>[Business Name] - Home</title>
+</head>
+<body>
+
+    <!-- Main content wrapper -->
+    <main>
+
+        <!-- Primary heading for the page -->
+        <h1>[Business Name]</h1>
+
+        <!-- Intro article/section -->
+        <article>
+            <h2>Welcome</h2>
+            <!-- Paragraph introducing the business -->
+            <p>[Write 2-4 sentences introducing the business, what it does, and who it serves.]</p>
+
+            <!-- Image relevant to this section -->
+        </article>
+
+        <!-- Second content section -->
+        <article>
+            <h2>Our Services</h2>
+            <!-- Paragraph describing services/products -->
+            <p>[Write a paragraph about services, products, or offerings.]</p>
+        </article>
+
+        <!-- Third content section (optional but good for content depth) -->
+        <article>
+            <h2>Why Choose Us</h2>
+            <p>[Write a paragraph about what makes the business stand out — hours, location, experience, etc.]</p>
+        </article>
+
+    </main>
+
+</body>
+</html>

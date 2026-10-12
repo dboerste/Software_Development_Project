@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gitlost</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="logo-mark">
+        <span class="sun"></span>
+      </div>
+
+      <div class="brand-text">
+        <h1>Gitlost</h1>
+        <span>Find Events. Plan Adventures.</span>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#" class="active">Home</a>
+      <a href="#events">Explore</a>
+      <a href="#trip">My Trips</a>
+      <a href="#">Favorites</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-button">⌕</button>
+      <div class="avatar">DK</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Plan More<br>Get <span>Lost</span> Less</h2>
+
+      <p class="hero-subtitle">
+        Discover events. Build your itinerary. Turn trips into experiences.
+      </p>
+
+      <div class="search-bar">
+        <div class="search-field">
+          <label>Where do you want to go?</label>
+          <input id="destinationInput" type="text" placeholder="e.g. Nashville, Tokyo, Barcelona" />
+        </div>
+
+        <div class="search-field">
+          <label>When?</label>
+          <input type="date" />
+        </div>
+
+        <div class="search-field">
+          <label>Event Type</label>
+          <select id="eventType">
+            <option value="all">All Events</option>
+            <option value="concerts">Concerts</option>
+            <option value="sports">Sports</option>
+            <option value="festivals">Festivals</option>
+            <option value="arts">Arts & Culture</option>
+            <option value="outdoors">Outdoors</option>
+          </select>
+        </div>
+
+        <button class="search-btn" id="searchBtn">Search</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-shell">
+    <main class="main-content" id="events">
+
+      <div class="filters">
+        <button class="filter active" data-filter="all">▦ All Events</button>
+        <button class="filter" data-filter="concerts">♫ Concerts</button>
+        <button class="filter" data-filter="sports">🏆 Sports</button>
+        <button class="filter" data-filter="festivals">✦ Festivals</button>
+        <button class="filter" data-filter="arts">▣ Arts & Culture</button>
+        <button class="filter" data-filter="food">♨ Food & Drink</button>
+        <button class="filter" data-filter="outdoors">△ Outdoors</button>
+      </div>
+
+      <div class="section-heading">
+        <h2>Popular Events</h2>
+        <a href="#">See All →</a>
+      </div>
+
+      
+      <div class="event-grid" id="eventGrid">
+
+        <!-- Ticketmaster API results will replace these empty pods -->
+        <div class="event-placeholder">
+          <div class="placeholder-image"></div>
+          <div class="placeholder-body">
+            <div class="placeholder-row">
+              <div class="placeholder-date"></div>
+              <div class="placeholder-copy">
+                <div class="placeholder-line"></div>
+                <div class="placeholder-line medium"></div>
+                <div class="placeholder-line short"></div>
+              </div>
+            </div>
+            <div class="placeholder-footer">
+              <div class="placeholder-price"></div>
+              <div class="placeholder-button"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-placeholder">
+          <div class="placeholder-image"></div>
+          <div class="placeholder-body">
+            <div class="placeholder-row">
+              <div class="placeholder-date"></div>
+              <div class="placeholder-copy">
+                <div class="placeholder-line"></div>
+                <div class="placeholder-line medium"></div>
+                <div class="placeholder-line short"></div>
+              </div>
+            </div>
+            <div class="placeholder-footer">
+              <div class="placeholder-price"></div>
+              <div class="placeholder-button"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-placeholder">
+          <div class="placeholder-image"></div>
+          <div class="placeholder-body">
+            <div class="placeholder-row">
+              <div class="placeholder-date"></div>
+              <div class="placeholder-copy">
+                <div class="placeholder-line"></div>
+                <div class="placeholder-line medium"></div>
+                <div class="placeholder-line short"></div>
+              </div>
+            </div>
+            <div class="placeholder-footer">
+              <div class="placeholder-price"></div>
+              <div class="placeholder-button"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-placeholder">
+          <div class="placeholder-image"></div>
+          <div class="placeholder-body">
+            <div class="placeholder-row">
+              <div class="placeholder-date"></div>
+              <div class="placeholder-copy">
+                <div class="placeholder-line"></div>
+                <div class="placeholder-line medium"></div>
+                <div class="placeholder-line short"></div>
+              </div>
+            </div>
+            <div class="placeholder-footer">
+              <div class="placeholder-price"></div>
+              <div class="placeholder-button"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-placeholder">
+          <div class="placeholder-image"></div>
+          <div class="placeholder-body">
+            <div class="placeholder-row">
+              <div class="placeholder-date"></div>
+              <div class="placeholder-copy">
+                <div class="placeholder-line"></div>
+                <div class="placeholder-line medium"></div>
+                <div class="placeholder-line short"></div>
+              </div>
+            </div>
+            <div class="placeholder-footer">
+              <div class="placeholder-price"></div>
+              <div class="placeholder-button"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-placeholder">
+          <div class="placeholder-image"></div>
+          <div class="placeholder-body">
+            <div class="placeholder-row">
+              <div class="placeholder-date"></div>
+              <div class="placeholder-copy">
+                <div class="placeholder-line"></div>
+                <div class="placeholder-line medium"></div>
+                <div class="placeholder-line short"></div>
+              </div>
+            </div>
+            <div class="placeholder-footer">
+              <div class="placeholder-price"></div>
+              <div class="placeholder-button"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+</div>
+    </main>
+
+    <aside class="trip-panel" id="trip">
+      <div class="trip-title-row">
+        <h2>🗺 My Trip</h2>
+        <button class="clear" id="clearTrip">Clear All</button>
+      </div>
+
+      <div class="destination-card">
+        <div class="destination-row">
+          <div class="destination-info">
+            <img
+              class="destination-thumb"
+              src="https://images.unsplash.com/photo-1545419913-775e3e82c7f9?auto=format&fit=crop&w=500&q=80"
+              alt="Nashville skyline"
+            />
+
+            <div>
+              <h3 id="tripDestination">Choose a destination</h3>
+              <p>Select dates to begin</p>
+            </div>
+          </div>
+
+          <span class="edit-link">Edit</span>
+        </div>
+
+        <div class="trip-items" id="tripItems">
+          <p style="padding:24px 0;color:#7b8998;font-size:13px;">
+            No events added yet.
+          </p>
+        </div></div>
+      </div>
+
+      <div class="trip-totals">
+        <span><span id="tripCount">0</span> events</span>
+        <span>Estimated Total <strong id="tripTotal">$0</strong></span>
+      </div>
+
+      <button class="optimize-btn">✦ Optimize Itinerary</button>
+      <button class="view-btn">▣ View Full Itinerary</button>
+
+      <div class="quote-box">
+        “Collect moments, not just destinations.”
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <div>
+      <strong>Gitlost</strong> &nbsp; Explore. Plan. Experience. Gitlost.
+    </div>
+
+    <div class="footer-links">
+      <span>About</span>
+      <span>Contact</span>
+      <span>Privacy</span>
+      <span>Terms</span>
+    </div>
+  </footer>
+
+  <script>
+    const destinationInput = document.getElementById("destinationInput");
+    const eventType = document.getElementById("eventType");
+    const searchBtn = document.getElementById("searchBtn");
+    const eventGrid = document.getElementById("eventGrid");
+    const tripDestination = document.getElementById("tripDestination");
+    const filterButtons = document.querySelectorAll(".filter");
+
+    searchBtn.addEventListener("click", () => {
+      const city = destinationInput.value.trim();
+      const type = eventType.value;
+
+      if (city) {
+        tripDestination.textContent = city;
+      }
+
+      /*
+        Ticketmaster integration can go here later.
+
+        Example:
+
+        fetch(`/api/events?city=${encodeURIComponent(city)}&type=${type}`)
+          .then(response => response.json())
+          .then(events => renderEvents(events))
+          .catch(error => console.error(error));
+      */
+    });
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        const category = button.dataset.filter;
+        eventType.value = category;
+
+        /*
+          Later:
+          either filter the loaded Ticketmaster results here,
+          or request the selected category from your backend.
+        */
+      });
+    });
+
+    /*
+      Call this after your Flask/Ticketmaster request returns data.
+
+      Expected event shape:
+      {
+        name: "Event Name",
+        image: "https://...",
+        month: "OCT",
+        day: "14",
+        venue: "Venue Name",
+        location: "City, State",
+        price: 75
+      }
+    */
+    function renderEvents(events) {
+      eventGrid.innerHTML = "";
+
+      events.forEach(event => {
+        const card = document.createElement("article");
+        card.className = "event-card";
+
+        card.innerHTML = `
+          <img class="event-photo"
+               src="${event.image || ""}"
+               alt="${event.name || "Event"}">
+
+          <button class="heart">♡</button>
+
+          <div class="event-body">
+            <div class="event-date-name">
+              <div class="date-box">
+                <span>${event.month || ""}</span>
+                <strong>${event.day || ""}</strong>
+              </div>
+
+              <div class="event-title">
+                <h3>${event.name || ""}</h3>
+                <p>⌖ ${event.venue || ""}</p>
+                <p>⌖ ${event.location || ""}</p>
+              </div>
+            </div>
+
+            <div class="event-footer">
+              <span class="event-price">
+                ${event.price ? "$" + event.price : "Price unavailable"}
+              </span>
+
+              <button class="add-trip">
+                Add to Trip
+              </button>
+            </div>
+          </div>
+        `;
+
+        eventGrid.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>
