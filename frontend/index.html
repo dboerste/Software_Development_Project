@@ -270,25 +270,47 @@
     const tripDestination = document.getElementById("tripDestination");
     const filterButtons = document.querySelectorAll(".filter");
 
-    searchBtn.addEventListener("click", () => {
+    async function fetchEvents(city, type = "all") {
+      try {
+          const url = `http://localhost:5000/api/events?city=${encodeURIComponent(city)}&type=${encodeURIComponent(type)}`;
+
+          const response = await fetch(url);
+
+          if (!response.ok) {
+              throw new Error("Failed to fetch events");
+          }
+
+          const events = await response.json();
+
+          console.log("Ticketmaster Events:", events);
+
+          return events;
+
+      } catch (error) {
+          console.error("Error fetching events:", error);
+          return [];
+      }
+  }
+
+    searchBtn.addEventListener("click", async () => {
       const city = destinationInput.value.trim();
       const type = eventType.value;
 
-      if (city) {
-        tripDestination.textContent = city;
+      if (!city) {
+          alert("Please enter a destination.");
+          return;
       }
 
-      /*
-        Ticketmaster integration can go here later.
+      tripDestination.textContent = city;
 
-        Example:
+      eventGrid.textContent = "Loading events...";
 
-        fetch(`/api/events?city=${encodeURIComponent(city)}&type=${type}`)
-          .then(response => response.json())
-          .then(events => renderEvents(events))
-          .catch(error => console.error(error));
-      */
-    });
+      const events = await fetchEvents(city, type);
+
+      const formattedEvents = formatTicketmasterEvents(events);
+
+      renderEvents(formattedEvents);
+  });
 
     filterButtons.forEach(button => {
       button.addEventListener("click", () => {
