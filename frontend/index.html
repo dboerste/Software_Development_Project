@@ -1,390 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gitlost</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gitlost | Start Exploring</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .landing {min-height:calc(100vh - 150px);display:flex;align-items:center;justify-content:center;padding:60px 20px;background:linear-gradient(135deg,#e9f4ff,#f7fafc 65%)}
+    .landing-card {width:min(100%,700px);text-align:center;background:white;border:1px solid #dbe4ee;border-radius:24px;padding:clamp(28px,6vw,65px);box-shadow:0 16px 40px rgba(30,55,80,.12)}
+    .landing-card h2 {font-size:clamp(30px,5vw,48px);color:#0f2744;margin-bottom:14px}
+    .landing-card p {color:#6c7a8c;line-height:1.6;margin-bottom:28px}
+    .landing-form {display:flex;gap:10px;flex-wrap:wrap}
+    .landing-form input {flex:1;min-width:190px;border:1px solid #dbe4ee;border-radius:10px;padding:15px;font:inherit}
+    .landing-form button,.login-link {border:0;border-radius:10px;background:#0f7dd8;color:white;padding:15px 25px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+    .landing-form button:hover,.login-link:hover {background:#0b65b0}
+    .search-label {display:block;text-align:left;color:#16243a;font-weight:600;margin:0 0 9px}
+    .login-prompt {margin-top:30px;padding-top:25px;border-top:1px solid #dbe4ee}
+    .login-prompt p {margin-bottom:14px}
+    .login-link {background:#0f2744}
+    .login-link:hover {background:#183c65}
+    .header-login {background:#0f7dd8;color:white;text-decoration:none;padding:10px 18px;border-radius:9px;font-weight:600}
+    .header-login:hover {background:#0b65b0}
+    @media(max-width:540px){.landing-form{flex-direction:column}.landing-form input{min-width:0}.header-login{padding:8px 12px}}
+  </style>
 </head>
-
 <body>
-
   <header>
-    <div class="brand">
-      <div class="logo-mark">
-        <span class="sun"></span>
-      </div>
-
-      <div class="brand-text">
-        <h1>Gitlost</h1>
-        <span>Find Events. Plan Adventures.</span>
-      </div>
-    </div>
-
-    <nav>
-      <a href="#" class="active">Home</a>
-      <a href="#events">Explore</a>
-      <a href="#trip">My Trips</a>
-      <a href="#">Favorites</a>
-    </nav>
-
-    <div class="header-actions">
-      <button class="icon-button">⌕</button>
-      <div class="avatar">DK</div>
-    </div>
+    <div class="brand"><div class="logo-mark"><span class="sun"></span></div><div class="brand-text"><h1>Gitlost</h1><span>Find Events. Plan Adventures.</span></div></div>
+    <nav><a href="home.html" class="active">Home</a><a href="index.html">Explore</a></nav>
+    <div class="header-actions"><a class="header-login" href="login.html">Log In</a></div>
   </header>
-
-  <section class="hero">
-    <div class="hero-content">
-      <h2>Plan More<br>Get <span>Lost</span> Less</h2>
-
-      <p class="hero-subtitle">
-        Discover events. Build your itinerary. Turn trips into experiences.
-      </p>
-
-      <div class="search-bar">
-        <div class="search-field">
-          <label>Where do you want to go?</label>
-          <input id="destinationInput" type="text" placeholder="e.g. Nashville, Tokyo, Barcelona" />
-        </div>
-
-        <div class="search-field">
-          <label>When?</label>
-          <input type="date" />
-        </div>
-
-        <div class="search-field">
-          <label>Event Type</label>
-          <select id="eventType">
-            <option value="all">All Events</option>
-            <option value="concerts">Concerts</option>
-            <option value="sports">Sports</option>
-            <option value="festivals">Festivals</option>
-            <option value="arts">Arts & Culture</option>
-            <option value="outdoors">Outdoors</option>
-          </select>
-        </div>
-
-        <button class="search-btn" id="searchBtn">Search</button>
+  <main class="landing">
+    <section class="landing-card">
+      <h2>Where will you go next?</h2>
+      <p>Start your search for experiences. Enter a destination to discover events and build your itinerary.</p>
+      <label class="search-label" for="destination">Search for a destination</label>
+      <form class="landing-form" action="homepage.html" method="get">
+        <input 
+          id="destination" 
+          name="city" 
+          type="search" 
+          placeholder="City, e.g. Nashville" 
+          aria-label="Destination city" 
+          autocomplete="address-level2" 
+          required autofocus>
+        <button type="submit">Explore Events</button>
+      </form>
+      <div class="login-prompt">
+        <p>Already planned a trip? Log in to access your saved itineraries.</p>
+        <a class="login-link" href="login.html">Log In to My Trips</a>
       </div>
-    </div>
-  </section>
-
-  <div class="page-shell">
-    <main class="main-content" id="events">
-
-      <div class="filters">
-        <button class="filter active" data-filter="all">▦ All Events</button>
-        <button class="filter" data-filter="concerts">♫ Concerts</button>
-        <button class="filter" data-filter="sports">🏆 Sports</button>
-        <button class="filter" data-filter="festivals">✦ Festivals</button>
-        <button class="filter" data-filter="arts">▣ Arts & Culture</button>
-        <button class="filter" data-filter="food">♨ Food & Drink</button>
-        <button class="filter" data-filter="outdoors">△ Outdoors</button>
-      </div>
-
-      <div class="section-heading">
-        <h2>Popular Events</h2>
-        <a href="#">See All →</a>
-      </div>
-
-      
-      <div class="event-grid" id="eventGrid">
-
-        <!-- Ticketmaster API results will replace these empty pods -->
-        <div class="event-placeholder">
-          <div class="placeholder-image"></div>
-          <div class="placeholder-body">
-            <div class="placeholder-row">
-              <div class="placeholder-date"></div>
-              <div class="placeholder-copy">
-                <div class="placeholder-line"></div>
-                <div class="placeholder-line medium"></div>
-                <div class="placeholder-line short"></div>
-              </div>
-            </div>
-            <div class="placeholder-footer">
-              <div class="placeholder-price"></div>
-              <div class="placeholder-button"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-placeholder">
-          <div class="placeholder-image"></div>
-          <div class="placeholder-body">
-            <div class="placeholder-row">
-              <div class="placeholder-date"></div>
-              <div class="placeholder-copy">
-                <div class="placeholder-line"></div>
-                <div class="placeholder-line medium"></div>
-                <div class="placeholder-line short"></div>
-              </div>
-            </div>
-            <div class="placeholder-footer">
-              <div class="placeholder-price"></div>
-              <div class="placeholder-button"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-placeholder">
-          <div class="placeholder-image"></div>
-          <div class="placeholder-body">
-            <div class="placeholder-row">
-              <div class="placeholder-date"></div>
-              <div class="placeholder-copy">
-                <div class="placeholder-line"></div>
-                <div class="placeholder-line medium"></div>
-                <div class="placeholder-line short"></div>
-              </div>
-            </div>
-            <div class="placeholder-footer">
-              <div class="placeholder-price"></div>
-              <div class="placeholder-button"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-placeholder">
-          <div class="placeholder-image"></div>
-          <div class="placeholder-body">
-            <div class="placeholder-row">
-              <div class="placeholder-date"></div>
-              <div class="placeholder-copy">
-                <div class="placeholder-line"></div>
-                <div class="placeholder-line medium"></div>
-                <div class="placeholder-line short"></div>
-              </div>
-            </div>
-            <div class="placeholder-footer">
-              <div class="placeholder-price"></div>
-              <div class="placeholder-button"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-placeholder">
-          <div class="placeholder-image"></div>
-          <div class="placeholder-body">
-            <div class="placeholder-row">
-              <div class="placeholder-date"></div>
-              <div class="placeholder-copy">
-                <div class="placeholder-line"></div>
-                <div class="placeholder-line medium"></div>
-                <div class="placeholder-line short"></div>
-              </div>
-            </div>
-            <div class="placeholder-footer">
-              <div class="placeholder-price"></div>
-              <div class="placeholder-button"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-placeholder">
-          <div class="placeholder-image"></div>
-          <div class="placeholder-body">
-            <div class="placeholder-row">
-              <div class="placeholder-date"></div>
-              <div class="placeholder-copy">
-                <div class="placeholder-line"></div>
-                <div class="placeholder-line medium"></div>
-                <div class="placeholder-line short"></div>
-              </div>
-            </div>
-            <div class="placeholder-footer">
-              <div class="placeholder-price"></div>
-              <div class="placeholder-button"></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-</div>
-    </main>
-
-    <aside class="trip-panel" id="trip">
-      <div class="trip-title-row">
-        <h2>🗺 My Trip</h2>
-        <button class="clear" id="clearTrip">Clear All</button>
-      </div>
-
-      <div class="destination-card">
-        <div class="destination-row">
-          <div class="destination-info">
-            <img
-              class="destination-thumb"
-              src="https://images.unsplash.com/photo-1545419913-775e3e82c7f9?auto=format&fit=crop&w=500&q=80"
-              alt="Nashville skyline"
-            />
-
-            <div>
-              <h3 id="tripDestination">Choose a destination</h3>
-              <p>Select dates to begin</p>
-            </div>
-          </div>
-
-          <span class="edit-link">Edit</span>
-        </div>
-
-        <div class="trip-items" id="tripItems">
-          <p style="padding:24px 0;color:#7b8998;font-size:13px;">
-            No events added yet.
-          </p>
-        </div></div>
-      </div>
-
-      <div class="trip-totals">
-        <span><span id="tripCount">0</span> events</span>
-        <span>Estimated Total <strong id="tripTotal">$0</strong></span>
-      </div>
-
-      <button class="optimize-btn">✦ Optimize Itinerary</button>
-      <button class="view-btn">▣ View Full Itinerary</button>
-
-      <div class="quote-box">
-        “Collect moments, not just destinations.”
-      </div>
-    </aside>
-  </div>
-
-  <footer>
-    <div>
-      <strong>Gitlost</strong> &nbsp; Explore. Plan. Experience. Gitlost.
-    </div>
-
-    <div class="footer-links">
-      <span>About</span>
-      <span>Contact</span>
-      <span>Privacy</span>
-      <span>Terms</span>
-    </div>
-  </footer>
-
-  <script>
-    const destinationInput = document.getElementById("destinationInput");
-    const eventType = document.getElementById("eventType");
-    const searchBtn = document.getElementById("searchBtn");
-    const eventGrid = document.getElementById("eventGrid");
-    const tripDestination = document.getElementById("tripDestination");
-    const filterButtons = document.querySelectorAll(".filter");
-
-    async function fetchEvents(city, type = "all") {
-      try {
-          const url = `http://localhost:5000/api/events?city=${encodeURIComponent(city)}&type=${encodeURIComponent(type)}`;
-
-          const response = await fetch(url);
-
-          if (!response.ok) {
-              throw new Error("Failed to fetch events");
-          }
-
-          const events = await response.json();
-
-          console.log("Ticketmaster Events:", events);
-
-          return events;
-
-      } catch (error) {
-          console.error("Error fetching events:", error);
-          return [];
-      }
-  }
-
-    searchBtn.addEventListener("click", async () => {
-      const city = destinationInput.value.trim();
-      const type = eventType.value;
-
-      if (!city) {
-          alert("Please enter a destination.");
-          return;
-      }
-
-      tripDestination.textContent = city;
-
-      eventGrid.textContent = "Loading events...";
-
-      const events = await fetchEvents(city, type);
-
-      const formattedEvents = formatTicketmasterEvents(events);
-
-      renderEvents(formattedEvents);
-  });
-
-    filterButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        filterButtons.forEach(btn => btn.classList.remove("active"));
-        button.classList.add("active");
-
-        const category = button.dataset.filter;
-        eventType.value = category;
-
-        /*
-          Later:
-          either filter the loaded Ticketmaster results here,
-          or request the selected category from your backend.
-        */
-      });
-    });
-
-    /*
-      Call this after your Flask/Ticketmaster request returns data.
-
-      Expected event shape:
-      {
-        name: "Event Name",
-        image: "https://...",
-        month: "OCT",
-        day: "14",
-        venue: "Venue Name",
-        location: "City, State",
-        price: 75
-      }
-    */
-    function renderEvents(events) {
-      eventGrid.innerHTML = "";
-
-      events.forEach(event => {
-        const card = document.createElement("article");
-        card.className = "event-card";
-
-        card.innerHTML = `
-          <img class="event-photo"
-               src="${event.image || ""}"
-               alt="${event.name || "Event"}">
-
-          <button class="heart">♡</button>
-
-          <div class="event-body">
-            <div class="event-date-name">
-              <div class="date-box">
-                <span>${event.month || ""}</span>
-                <strong>${event.day || ""}</strong>
-              </div>
-
-              <div class="event-title">
-                <h3>${event.name || ""}</h3>
-                <p>⌖ ${event.venue || ""}</p>
-                <p>⌖ ${event.location || ""}</p>
-              </div>
-            </div>
-
-            <div class="event-footer">
-              <span class="event-price">
-                ${event.price ? "$" + event.price : "Price unavailable"}
-              </span>
-
-              <button class="add-trip">
-                Add to Trip
-              </button>
-            </div>
-          </div>
-        `;
-
-        eventGrid.appendChild(card);
-      });
-    }
-  </script>
+    </section>
+  </main>
+  <footer><div><strong>Gitlost</strong> &nbsp; Explore. Plan. Experience.</div></footer>
 </body>
 </html>
