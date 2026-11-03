@@ -1,15 +1,25 @@
 
 import os
+from pathlib import Path
+
 import requests
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
+# Project directories
+BASE_DIR = Path(__file__).resolve().parent
+FRONTEND_DIR = BASE_DIR.parent / "frontend"
+
 # Initialize Flask
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_folder=str(FRONTEND_DIR),
+    static_url_path=""
+)
 
 # Allow frontend to communicate with backend
 CORS(app, resources={
-    r"/api/*": {"origins": "http://localhost:8081"}
+    r"/api/*": {"origins": "http://localhost:5000"}
 })
 
 # Retrieve API key from environment
@@ -19,10 +29,10 @@ TICKETMASTER_API_KEY = os.getenv("TICKETMASTER_API_KEY")
 TICKETMASTER_URL = "https://app.ticketmaster.com/discovery/v2/events.json"
 
 
-# Test backend connection
+# Serve frontend homepage
 @app.route("/", methods=["GET"])
 def home():
-    return jsonify({"message": "GitLost backend is running!"})
+    return send_from_directory(FRONTEND_DIR, "index.html")
 
 
 # Retrieve events from Ticketmaster
@@ -88,4 +98,8 @@ def get_events():
 
 # Start Flask server
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(
+        host="127.0.0.1",
+        port=5000,
+        debug=True
+    )
