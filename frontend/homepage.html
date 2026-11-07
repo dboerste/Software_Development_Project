@@ -237,8 +237,9 @@
         <span>Estimated Total <strong id="tripTotal">$0</strong></span>
       </div>
 
-      <button class="optimize-btn">✦ Optimize Itinerary</button>
+      <button class="optimize-btn" id="optimizeBtn">✦ Optimize Itinerary</button>
       <button class="view-btn">▣ View Full Itinerary</button>
+      <p class="optimize-status" id="optimizeStatus"></p>
 
       <div class="quote-box">
         “Collect moments, not just destinations.”
@@ -271,6 +272,8 @@
     const tripItems = document.getElementById("tripItems");
     const tripCount = document.getElementById("tripCount");
     const tripTotal = document.getElementById("tripTotal");
+    const optimizeBtn = document.getElementById("optimizeBtn");
+    const optimizeStatus = document.getElementById("optimizeStatus");
     const selectedEvents = new Map();
     let lastResults = [];
 
@@ -390,6 +393,10 @@
     }
 
     function renderTrip() {
+      // Any earlier "Itinerary sorted" message is stale once the trip
+      // changes again (an event added, removed, or cleared).
+      optimizeStatus.textContent = "";
+
       tripItems.replaceChildren();
       if (!selectedEvents.size) {
         const empty = document.createElement("p");
@@ -417,6 +424,40 @@
       const missingPrices = [...selectedEvents.values()].some(event => event.price === null);
       tripTotal.textContent = `$${knownTotal.toFixed(2)}${missingPrices ? "+" : ""}`;
     }
+
+    // "Optimizing" an itinerary, for now, means putting its events in
+    // chronological order so the trip reads as an actual day-by-day plan
+    // instead of the order things happened to be added in. Events with
+    // no known date (Ticketmaster occasionally omits one) sort to the end
+    // rather than being dropped.
+    function optimizeItinerary() {
+      if (selectedEvents.size === 0) {
+        optimizeStatus.textContent = "Add some events to your trip first.";
+        return;
+      }
+
+      if (selectedEvents.size === 1) {
+        optimizeStatus.textContent = "Only one event in your trip — nothing to reorder.";
+        return;
+      }
+
+      const sortedEntries = [...selectedEvents.entries()].sort((a, b) => {
+        const dateA = a[1].date;
+        const dateB = b[1].date;
+        if (!dateA && !dateB) return 0;
+        if (!dateA) return 1;
+        if (!dateB) return -1;
+        return dateA.localeCompare(dateB);
+      });
+
+      selectedEvents.clear();
+      sortedEntries.forEach(([id, event]) => selectedEvents.set(id, event));
+
+      renderTrip();
+      optimizeStatus.textContent = "Itinerary sorted by date.";
+    }
+
+    optimizeBtn.addEventListener("click", optimizeItinerary);
 
     async function searchEvents() {
       const city = destinationInput.value.trim();
