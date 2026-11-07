@@ -637,6 +637,14 @@ nav a.active {
     color: var(--navy);
 }
 
+.optimize-status {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--green);
+    text-align: center;
+    min-height: 15px;
+}
+
 .quote-box {
     margin-top: 18px;
     background: var(--light-blue);
